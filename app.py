@@ -7,8 +7,8 @@ app = Flask(__name__)
 def index():
     page = ''
     for can in main.load_candidates():
-        page += 'Имя кандидата -' + can['name'] + '\n' + 'Позиция кандидата -' + can['position'] + '\n'\
-                + 'Навыки -' + can['skills'] + '\n' + '\n'
+        page += 'Имя кандидата - ' + can['name'] + '\n' + 'Позиция кандидата - ' + can['position'] + '\n'\
+                + 'Навыки - ' + can['skills'] + '\n' + '\n'
     return '<pre>' + page + '</pre>'
 
 @app.route('/candidates/<int:uid>')
@@ -25,6 +25,16 @@ def candidate(uid):
                 <p> Позиция кандидата - {can['position']} <br />
                 <p> Навыки - {can['skills']}
                 """
+
+@app.route('/skills/<uid>')
+def skills_candidate(uid):
+    candidetes = main.load_candidates()
+    page = ''
+    for can in candidetes:
+        if uid.lower() in can['skills']:
+            page += 'Имя кандидата - ' + can['name'] + '\n' + 'Позиция кандидата - ' + can['position'] + '\n' \
+                    + 'Навыки - ' + can['skills'] + '\n' + '\n'
+    return '<pre>' + page + '</pre>'
 
 
 app.run(debug=True)
