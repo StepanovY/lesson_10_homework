@@ -31,10 +31,13 @@ def skills_candidate(uid):
     candidetes = main.load_candidates()
     page = ''
     for can in candidetes:
-        if uid.lower() in can['skills']:
+        if uid.lower() in can['skills'].split(', '):
             page += 'Имя кандидата - ' + can['name'] + '\n' + 'Позиция кандидата - ' + can['position'] + '\n' \
                     + 'Навыки - ' + can['skills'] + '\n' + '\n'
-    return '<pre>' + page + '</pre>'
+    if len(page) == 0:
+        return 'Нет кандидата с таким навыком'
+    else:
+        return '<pre>' + page + '</pre>'
 
 
 app.run(debug=True)
