@@ -7,9 +7,12 @@ app = Flask(__name__)
 def index():
     page = ''
     for can in main.load_candidates():
-        page += 'Имя кандидата - ' + can['name'] + '\n' + 'Позиция кандидата - ' + can['position'] + '\n'\
-                + 'Навыки - ' + can['skills'] + '\n' + '\n'
-    return '<pre>' + page + '</pre>'
+        page += f'<p><a href="/candidates/{can["id"]}">Имя кандидата { can["name"] }</a></p>'
+        page += f'<p>Имя кандидата { can["position"] }</p>'
+        page += f'<p>Имя кандидата { can["skills"] }</p>'
+        page += '<br /><br />'
+
+    return page
 
 @app.route('/candidates/<int:uid>')
 def candidate(uid):
