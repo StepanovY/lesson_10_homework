@@ -24,6 +24,7 @@ def candidate(uid):
             if can['id'] == uid:
                 return f"""
                 <img src = {can['picture']}> <br />
+                <hr />
                 <p> Имя кандидата - {can['name']} <br />
                 <p> Позиция кандидата - {can['position']} <br />
                 <p> Навыки - {can['skills']}
